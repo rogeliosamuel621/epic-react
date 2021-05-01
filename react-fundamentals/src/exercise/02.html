@@ -8,26 +8,35 @@
   <script src="https://unpkg.com/react-dom@17.0.0/umd/react-dom.development.js"></script>
 
   <script type="module">
-    const elementProps = { children: 'hello world', id: 'element-id', className: 'container' };
-    const rootElement = document.getElementById('root')
+    class ElementsProps {
+      constructor(children = '', className, id, key) {
+        this.children = children;
+        this.id = id;
+        this.className = className;
+        this.key = key;
+      }
+    }
 
-    // You're going to re-implement this code using React!
-    // 💣 So go ahead and delete this implementation (or comment it out for now)
-    // These three lines are similar to React.createElement
+    class CreateReactElement {
+      constructor(type, props) {
+        this.type = type;
+        this.props = new ElementsProps(props.children, props.className, props.id, props.key);
+        this.element = this.createElement();
+      }
 
-    const reactElement = React.createElement('h1', elementProps);
-    console.log(reactElement);
+      createElement() {
+        const reactElement = React.createElement(this.type, this.props);
+        
+        return reactElement;
+      }
+    }
+    const spanElement1 = new CreateReactElement('span', { children: 'Hello', key: 0 }).element;
+    const spanElement2 = new CreateReactElement('span', { children: 'World', key: 1 }).element;
 
-    ReactDOM.render(reactElement, rootElement)
+    const conatinerDiv = new CreateReactElement('div', {children: [spanElement1, spanElement2], className: 'container'})
 
-    // const element = document.createElement('div')
-    // element.textContent = 'Hello World' // 💰 in React, you set this with the "children" prop
-    // element.className = 'container' // 💰 in React, this is also called the "className" prop
-    // // This is similar to ReactDOM.render
-    // rootElement.append(element)
+    console.log(conatinerDiv.element);
 
-    // 🐨 Please re-implement the regular document.createElement code above
-    // with these React API calls
-    // 💰 The example in the markdown file should be a good hint for you.
+    ReactDOM.render(conatinerDiv.element, document.getElementById('root'))
   </script>
 </body>
