@@ -5,6 +5,7 @@ import * as React from 'react'
 import {render, screen} from '@testing-library/react'
 import userEvent from '@testing-library/user-event'
 import useCounter from '../../components/use-counter'
+import '@testing-library/jest-dom'
 
 function UseCounterHookExample() {
   const {count, increment, decrement} = useCounter()

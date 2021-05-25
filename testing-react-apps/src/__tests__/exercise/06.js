@@ -4,6 +4,8 @@
 import * as React from 'react'
 import {render, screen, act} from '@testing-library/react'
 import Location from '../../examples/location'
+import '@testing-library/jest-dom'
+
 
 // 🐨 set window.navigator.geolocation to an object that has a getCurrentPosition mock function
 
